@@ -323,79 +323,79 @@ No Guest
 
 </section>
 
-<!-- HOTSTAR HQ -->
-
-<section
-id="hotstarPage"
-class="page hidden">
+<!-- HOTSTAR MANAGER -->
 
 <div class="card">
 
-<h2>
-📺 Disney+ Hotstar HQ
+<h2 class="section-title">
+📺 Disney Hotstar Rental
 </h2>
 
-</div>
+<select id="hotstarAccount">
 
-<!-- ACCOUNT 1 -->
+<option value="iphone16">
+iPhone 16 • 0102730140
+</option>
 
-<div class="card">
+<option value="iphone11">
+iPhone 11 • 0104442604
+</option>
 
-<h3>
-📱 iPhone 16
-</h3>
+</select>
 
-<p>
-0102730140
-</p>
+<input
+id="profileName"
+placeholder="Profile Name">
 
-<div id="account1Profiles">
+<input
+id="customerName"
+placeholder="Customer Name">
 
-</div>
+<input
+id="platform"
+placeholder="Platform (Threads / WhatsApp)">
+
+<input
+id="username"
+placeholder="Threads Username">
+
+<input
+id="customerPhone"
+placeholder="Phone Number">
+
+<input
+id="device"
+placeholder="Device (TV / Phone)">
+
+<input
+type="date"
+id="latestPayment">
+
+<input
+type="date"
+id="nextPayment">
 
 <button
-id="addProfileA">
+class="btn"
+onclick="addHotstarProfile()">
 
-+ Add Profile
+Save Profile
 
 </button>
 
 </div>
 
-<!-- ACCOUNT 2 -->
-
 <div class="card">
 
-<h3>
-📱 iPhone 11
-</h3>
+<h2 class="section-title">
+📺 Active Profiles
+</h2>
 
-<p>
-0104442604
-</p>
+<div id="hotstarList">
 
-<div id="account2Profiles">
+No Profiles Yet
 
 </div>
-
-<button
-id="addProfileB">
-
-+ Add Profile
-
-</button>
-
-</div>
-
-</section>
-
-<!-- MONEY PAGE -->
-
-<section
-id="moneyPage"
-class="page hidden">
-
-<div class="card">
 
 <h2>
 💰 Cash Tracker
@@ -453,6 +453,51 @@ Current Balance
 <h1 id="balanceDisplay">
 RM0
 </h1>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">
+💰 Closing Tracker
+</h2>
+
+<input
+type="date"
+id="closingStart">
+
+<input
+type="date"
+id="closingEnd">
+
+<input
+type="number"
+id="closingAmount"
+placeholder="Amount">
+
+<button
+class="btn"
+onclick="saveClosing()">
+
+Save Closing
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">
+🧾 Closing History
+</h2>
+
+<div id="closingList">
+
+No Closing Yet
+
+</div>
 
 </div>
 
