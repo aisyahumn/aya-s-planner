@@ -323,108 +323,63 @@ No Guest
 
 </section>
 
-<!-- HOTSTAR HQ -->
-
-<section
-id="hotstarPage"
-class="page hidden">
+<!-- HOTSTAR MANAGER -->
 
 <div class="card">
 
-<h2>
-📺 Disney+ Hotstar HQ
+<h2 class="section-title">
+📺 Disney Hotstar Rental
 </h2>
 
-</div>
+<select id="hotstarAccount">
 
-<!-- ACCOUNT 1 -->
-
-<div class="card">
-
-<h3>
-📱 iPhone 16
-</h3>
-
-<p>
-0102730140
-</p>
-
-<div id="account1Profiles">
-
-</div>
-
-<button
-id="addProfileA">
-
-+ Add Profile
-
-</button>
-
-</div>
-
-<!-- ACCOUNT 2 -->
-
-<div class="card">
-
-<h3>
-📱 iPhone 11
-</h3>
-
-<p>
-0104442604
-</p>
-
-<div id="account2Profiles">
-
-</div>
-
-<button
-id="addProfileB">
-
-+ Add Profile
-
-</button>
-
-</div>
-
-</section>
-
-<!-- MONEY PAGE -->
-
-<section
-id="moneyPage"
-class="page hidden">
-
-<div class="card">
-
-<h2>
-💰 Cash Tracker
-</h2>
-
-<input
-type="number"
-id="moneyAmount"
-placeholder="Amount">
-
-<input
-id="moneyDesc"
-placeholder="Description">
-
-<select id="moneyType">
-
-<option value="in">
-Money In
+<option value="iphone16">
+iPhone 16 • 0102730140
 </option>
 
-<option value="out">
-Money Out
+<option value="iphone11">
+iPhone 11 • 0104442604
 </option>
 
 </select>
 
-<button id="saveMoney">
+<input
+id="profileName"
+placeholder="Profile Name">
 
-Add Transaction
+<input
+id="customerName"
+placeholder="Customer Name">
+
+<input
+id="platform"
+placeholder="Platform (Threads / WhatsApp)">
+
+<input
+id="username"
+placeholder="Threads Username">
+
+<input
+id="customerPhone"
+placeholder="Phone Number">
+
+<input
+id="device"
+placeholder="Device (TV / Phone)">
+
+<input
+type="date"
+id="latestPayment">
+
+<input
+type="date"
+id="nextPayment">
+
+<button
+class="btn"
+onclick="addHotstarProfile()">
+
+Save Profile
 
 </button>
 
@@ -432,31 +387,17 @@ Add Transaction
 
 <div class="card">
 
-<h2>
-Transaction History
+<h2 class="section-title">
+📺 Active Profiles
 </h2>
 
-<div id="moneyList">
+<div id="hotstarList">
 
-No Transaction
-
-</div>
+No Profiles Yet
 
 </div>
 
-<div class="card">
-
-<h2>
-Current Balance
-</h2>
-
-<h1 id="balanceDisplay">
-RM0
-</h1>
-
 </div>
-
-</section>
 
 <!-- SALES PAGE -->
 
@@ -521,6 +462,49 @@ No Data
 
 </div>
 
+<div class="card">
+
+<h2 class="section-title">
+💰 Closing Tracker
+</h2>
+
+<input
+type="date"
+id="closingStart">
+
+<input
+type="date"
+id="closingEnd">
+
+<input
+type="number"
+id="closingAmount"
+placeholder="Amount">
+
+<button
+class="btn"
+onclick="saveClosing()">
+
+Save Closing
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2 class="section-title">
+🧾 Closing History
+</h2>
+
+<div id="closingList">
+
+No Closing Yet
+
+</div>
+
+</div>
+  
 </div>
 
 </section>
@@ -533,19 +517,25 @@ class="page hidden">
 
 <div class="card">
 
-<h2>
+<h2 class="section-title">
 💭 Need To Ask
 </h2>
 
-<div id="askContainer">
+<input
+id="staffName"
+placeholder="Staff Name">
 
-</div>
+<button
+class="btn"
+onclick="addStaff()">
 
-<button id="addPerson">
-
-+ Add Person
+Add Staff
 
 </button>
+
+<div id="staffList">
+
+</div>
 
 </div>
 
@@ -636,6 +626,300 @@ class="page hidden">
 </div>
 
 <script src="app.js"></script>
+
+let hotstarProfiles =
+JSON.parse(
+localStorage.getItem(
+'hotstarProfiles'
+)
+)||[];
+
+function addHotstarProfile(){
+
+hotstarProfiles.push({
+
+account:
+hotstarAccount.value,
+
+profile:
+profileName.value,
+
+name:
+customerName.value,
+
+platform:
+platform.value,
+
+username:
+username.value,
+
+phone:
+customerPhone.value,
+
+device:
+device.value,
+
+latest:
+latestPayment.value,
+
+next:
+nextPayment.value
+
+});
+
+localStorage.setItem(
+'hotstarProfiles',
+JSON.stringify(
+hotstarProfiles
+)
+);
+
+renderHotstar();
+
+}
+
+function renderHotstar(){
+
+let html='';
+
+hotstarProfiles.forEach((p,index)=>{
+
+html+=`
+
+<div class="card">
+
+<b>${p.profile}</b><br>
+
+👤 ${p.name}<br>
+
+📱 ${p.phone}<br>
+
+💬 ${p.platform}<br>
+
+🏷 ${p.username}<br>
+
+📺 ${p.device}<br>
+
+💰 ${p.latest}<br>
+
+⏳ ${p.next}<br>
+
+📍 ${p.account}
+
+</div>
+
+`;
+
+});
+
+document.getElementById(
+'hotstarList'
+).innerHTML=
+html || 'No Profiles';
+
+}
+
+let closings =
+JSON.parse(
+localStorage.getItem(
+'closings'
+)
+)||[];
+
+function saveClosing(){
+
+closings.push({
+
+start:
+closingStart.value,
+
+end:
+closingEnd.value,
+
+amount:
+closingAmount.value,
+
+closed:false
+
+});
+
+localStorage.setItem(
+'closings',
+JSON.stringify(
+closings
+)
+);
+
+renderClosing();
+
+}
+
+function toggleClosed(index){
+
+closings[index].closed =
+!closings[index].closed;
+
+localStorage.setItem(
+'closings',
+JSON.stringify(
+closings
+)
+);
+
+renderClosing();
+
+}
+
+function renderClosing(){
+
+let html='';
+
+closings.forEach((c,index)=>{
+
+html+=`
+
+<div class="card">
+
+💰 RM${c.amount}<br>
+
+📅 ${c.start}
+ → ${c.end}<br>
+
+Status:
+${c.closed ? '✅ Closed' : '🟡 Pending'}
+
+<br><br>
+
+<button
+class="btn"
+onclick="toggleClosed(${index})">
+
+${c.closed
+?'Reopen'
+:'Mark Closed'}
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById(
+'closingList'
+).innerHTML=
+html || 'No Closing';
+
+}
+
+let staffs =
+JSON.parse(
+localStorage.getItem(
+'staffs'
+)
+)||[];
+
+function addStaff(){
+
+staffs.push({
+
+name:
+staffName.value,
+
+note:''
+
+});
+
+localStorage.setItem(
+'staffs',
+JSON.stringify(
+staffs
+)
+);
+
+renderStaffs();
+
+}
+
+function renderStaffs(){
+
+let html='';
+
+staffs.forEach((s,index)=>{
+
+html+=`
+
+<div class="card">
+
+<h3>${s.name}</h3>
+
+<textarea
+onchange="
+updateStaffNote(
+${index},
+this.value
+)">
+${s.note}</textarea>
+
+<button
+class="btn"
+onclick="
+deleteStaff(
+${index}
+)">
+
+Delete
+
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById(
+'staffList'
+).innerHTML=
+html;
+
+}
+
+function updateStaffNote(
+index,
+value
+){
+
+staffs[index].note =
+value;
+
+localStorage.setItem(
+'staffs',
+JSON.stringify(
+staffs
+)
+);
+
+}
+
+function deleteStaff(index){
+
+staffs.splice(
+index,
+1
+);
+
+localStorage.setItem(
+'staffs',
+JSON.stringify(
+staffs
+)
+);
+
+renderStaffs();
+
+}
 
 </body>
 </html>
