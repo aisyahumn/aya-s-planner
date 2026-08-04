@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎀 Aya's Planner</title>
+
+<style>
+body{
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+background:#FFF7F8;
+padding:20px;
+color:#5A4D4D;
+max-width:700px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:20px;
+margin-bottom:15px;
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin-top:8px;
+border:1px solid #EADADA;
+border-radius:12px;
+box-sizing:border-box;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:15px;
+background:#F6D9E2;
+font-size:16px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.save{
+background:#F6D9E2;
+}
+
+.links{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+
+.link-btn{
+background:#FAECEF;
+padding:12px;
+border-radius:12px;
+text-align:center;
+text-decoration:none;
+color:#5A4D4D;
+font-weight:600;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎀 Aya's Planner</h1>
+
+<div class="card">
+<h3>📅 Event Paling Dekat</h3>
+<input id="event">
+</div>
+
+<div class="card">
+<h3>✅ To Do Hari Ini</h3>
+<textarea id="today" rows="5"></textarea>
+</div>
+
+<div class="card">
+<h3>📆 To Do Mingguan</h3>
+<textarea id="weekly" rows="5"></textarea>
+</div>
+
+<div class="card">
+<h3>💭 Soalan Nak Tanya</h3>
+<textarea id="ask" rows="5"></textarea>
+</div>
+
+<div class="card">
+<h3>💰 Petty Cash / PV</h3>
+<textarea id="money" rows="5"></textarea>
+</div>
+
+<div class="card">
+<h3>🏨 Sales Bilik</h3>
+<input id="sales">
+</div>
+
+<div class="card">
+<h3>🔗 Quick Access</h3>
+
+<div class="links">
+
+<a class="link-btn" href="notes://">📝 Notes</a>
+
+<a class="link-btn" href="files://">📂 Files</a>
+
+<a class="link-btn" href="https://wa.me/">🟢 WhatsApp</a>
+
+<a class="link-btn" href="https://youtube.com">▶️ YouTube</a>
+
+</div>
+
+</div>
+
+<button class="save" onclick="saveData()">
+💗 Save Planner
+</button>
+
+<script>
+
+function saveData(){
+
+localStorage.setItem(
+'event',
+document.getElementById('event').value
+);
+
+localStorage.setItem(
+'today',
+document.getElementById('today').value
+);
+
+localStorage.setItem(
+'weekly',
+document.getElementById('weekly').value
+);
+
+localStorage.setItem(
+'ask',
+document.getElementById('ask').value
+);
+
+localStorage.setItem(
+'money',
+document.getElementById('money').value
+);
+
+localStorage.setItem(
+'sales',
+document.getElementById('sales').value
+);
+
+alert("Planner Saved 🎀");
+
+}
+
+window.onload=function(){
+
+document.getElementById('event').value=
+localStorage.getItem('event') || '';
+
+document.getElementById('today').value=
+localStorage.getItem('today') || '';
+
+document.getElementById('weekly').value=
+localStorage.getItem('weekly') || '';
+
+document.getElementById('ask').value=
+localStorage.getItem('ask') || '';
+
+document.getElementById('money').value=
+localStorage.getItem('money') || '';
+
+document.getElementById('sales').value=
+localStorage.getItem('sales') || '';
+
+}
+
+</script>
+
+</body>
+</html>
