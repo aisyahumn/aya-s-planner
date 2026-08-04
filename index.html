@@ -1,366 +1,74 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <title>Aya's Planner 🎀</title>
-
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      overflow: hidden;
-
-      font-family:
-        "Trebuchet MS",
-        Arial,
-        sans-serif;
-
-      background:
-        linear-gradient(
-          135deg,
-          #fff9f5,
-          #f9e8e9
-        );
-
-      color: #725d60;
-    }
-
-
-    /* Soft decorative circles */
-
-    .blob-one {
-      position: absolute;
-
-      width: 240px;
-      height: 240px;
-
-      top: -90px;
-      left: -80px;
-
-      border-radius: 50%;
-
-      background: #f2d5d8;
-
-      opacity: 0.55;
-    }
-
-
-    .blob-two {
-      position: absolute;
-
-      width: 280px;
-      height: 280px;
-
-      right: -110px;
-      bottom: -120px;
-
-      border-radius: 50%;
-
-      background: #ead9cb;
-
-      opacity: 0.65;
-    }
-
-
-    /* Main card */
-
-    .landing-card {
-
-      width: 90%;
-      max-width: 460px;
-
-      position: relative;
-
-      text-align: center;
-
-      padding:
-        65px
-        30px
-        55px;
-
-      background:
-        rgba(
-          255,
-          255,
-          255,
-          0.82
-        );
-
-      border:
-        1px solid
-        rgba(
-          230,
-          184,
-          190,
-          0.45
-        );
-
-      border-radius: 35px;
-
-      box-shadow:
-        0 18px 50px
-        rgba(
-          120,
-          80,
-          85,
-          0.12
-        );
-
-      backdrop-filter:
-        blur(10px);
-    }
-
-
-    .flower {
-
-      font-size: 45px;
-
-      margin-bottom: 20px;
-
-      animation:
-        float 3s
-        ease-in-out
-        infinite;
-    }
-
-
-    h1 {
-
-      font-family:
-        Georgia,
-        serif;
-
-      font-size: 43px;
-
-      font-weight: normal;
-
-      color: #805d63;
-
-      margin-bottom: 17px;
-    }
-
-
-    .subtitle {
-
-      font-size: 16px;
-
-      line-height: 1.8;
-
-      color: #9a7f82;
-
-      margin-bottom: 37px;
-    }
-
-
-    .enter-button {
-
-      display:
-        inline-block;
-
-      padding:
-        15px
-        31px;
-
-      border-radius:
-        50px;
-
-      background:
-        #e8bfc6;
-
-      color:
-        #ffffff;
-
-      text-decoration:
-        none;
-
-      font-size:
-        15px;
-
-      font-weight:
-        bold;
-
-      letter-spacing:
-        0.4px;
-
-      box-shadow:
-        0 8px 18px
-        rgba(
-          190,
-          125,
-          135,
-          0.25
-        );
-
-      transition:
-        0.25s;
-    }
-
-
-    .enter-button:hover {
-
-      transform:
-        translateY(-3px);
-
-      background:
-        #ddaeb7;
-
-      box-shadow:
-        0 12px 22px
-        rgba(
-          190,
-          125,
-          135,
-          0.32
-        );
-    }
-
-
-    .quote {
-
-      margin-top:
-        38px;
-
-      font-size:
-        13px;
-
-      color:
-        #b39a96;
-
-      letter-spacing:
-        0.5px;
-    }
-
-
-    @keyframes float {
-
-      0% {
-        transform:
-          translateY(0);
-      }
-
-      50% {
-        transform:
-          translateY(-8px);
-      }
-
-      100% {
-        transform:
-          translateY(0);
-      }
-
-    }
-
-
-    /* Mobile */
-
-    @media
-    (max-width: 450px) {
-
-      .landing-card {
-
-        padding:
-          55px
-          23px
-          45px;
-
-      }
-
-
-      h1 {
-
-        font-size:
-          37px;
-
-      }
-
-    }
-
-  </style>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aya's Planner</title>
+<style>
+body{font-family:-apple-system,sans-serif;background:#f8eeee;padding:18px;color:#5a4b4b}
+.card{background:#fff;border-radius:18px;padding:14px;margin:10px 0;box-shadow:0 3px 10px rgba(0,0,0,.08)}
+h1{text-align:center}
+textarea,input{width:100%;padding:10px;border-radius:10px;border:1px solid #ddd;box-sizing:border-box}
+button{background:#f4d6df;border:none;padding:10px 14px;border-radius:12px}
+</style>
 </head>
-
-
 <body>
+<h1>🎀 Aya's Planner</h1>
 
+<div class="card">
+<h3>📅 Event Paling Dekat</h3>
+<input id="event" placeholder="Contoh: Teachers Bonding">
+</div>
 
-  <div
-    class="blob-one">
-  </div>
+<div class="card">
+<h3>✅ To Do Hari Ini</h3>
+<textarea id="today" rows="5"></textarea>
+</div>
 
+<div class="card">
+<h3>📆 To Do Mingguan</h3>
+<textarea id="weekly" rows="5"></textarea>
+</div>
 
-  <div
-    class="blob-two">
-  </div>
+<div class="card">
+<h3>💭 Soalan Nak Tanya Siapa</h3>
+<textarea id="ask" rows="5"></textarea>
+</div>
 
+<div class="card">
+<h3>💰 Petty Cash / PV</h3>
+<textarea id="money" rows="5"></textarea>
+</div>
 
-  <main
-    class="landing-card">
+<div class="card">
+<h3>🏨 Sales Bilik</h3>
+<input id="sales" placeholder="RM">
+</div>
 
+<div class="card">
+<button onclick="saveData()">💗 Save Planner</button>
+<p id="status"></p>
+</div>
 
-    <div
-      class="flower">
-
-      🌷
-
-    </div>
-
-
-    <h1>
-
-      Aya's Planner
-
-    </h1>
-
-
-    <p
-      class="subtitle">
-
-      A little space
-      for my plans,
-
-      <br>
-
-      goals
-      & gentle reminders ✨
-
-    </p>
-
-
-    <a
-      href="planner.html"
-      class="enter-button">
-
-      Enter My Planner →
-
-    </a>
-
-
-    <p
-      class="quote">
-
-      ♡ plan softly,
-      live beautifully ♡
-
-    </p>
-
-
-  </main>
-
-
+<script>
+function saveData(){
+ localStorage.setItem('event',event.value);
+ localStorage.setItem('today',today.value);
+ localStorage.setItem('weekly',weekly.value);
+ localStorage.setItem('ask',ask.value);
+ localStorage.setItem('money',money.value);
+ localStorage.setItem('sales',sales.value);
+ status.innerText='Saved ✨';
+}
+window.onload=()=>{
+ event.value=localStorage.getItem('event')||'';
+ today.value=localStorage.getItem('today')||'';
+ weekly.value=localStorage.getItem('weekly')||'';
+ ask.value=localStorage.getItem('ask')||'';
+ money.value=localStorage.getItem('money')||'';
+ sales.value=localStorage.getItem('sales')||'';
+}
+</script>
 </body>
 </html>
