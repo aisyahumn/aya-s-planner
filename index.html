@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>💗 Aya HQ v2.0</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<!-- LOGIN -->
+
+<div id="loginPage">
+
+<div class="login-card">
+
+<h1>🎀 Aya HQ</h1>
+
+<p>
+Personal Planner + Resort HQ + Hotstar HQ
+</p>
+
+<input
+type="password"
+id="passwordInput"
+placeholder="Enter Password">
+
+<button id="loginBtn">
+Unlock 🎀
+</button>
+
+</div>
+
+</div>
+
+<!-- APP -->
+
+<div id="app" class="hidden">
+
+<!-- DASHBOARD -->
+
+<section
+id="dashboardPage"
+class="page">
+
+<div class="hero-card">
+
+<h2 id="greeting">
+Good Evening Aya 🌙
+</h2>
+
+<p id="todayDate">
+Loading...
+</p>
+
+<p id="clock">
+Loading...
+</p>
+
+</div>
+
+<!-- DASHBOARD GRID -->
+
+<div class="dashboard-grid">
+
+<div class="widget">
+<h3>🕌 Solat</h3>
+<p id="dashboardSolat">
+0 / 5
+</p>
+</div>
+
+<div class="widget">
+<h3>📅 Next Event</h3>
+<p id="dashboardEvent">
+No Event
+</p>
+</div>
+
+<div class="widget">
+<h3>💰 Cash</h3>
+<p id="dashboardCash">
+RM0
+</p>
+</div>
+
+<div class="widget">
+<h3>🏨 Sales</h3>
+<p id="dashboardSales">
+RM0
+</p>
+</div>
+
+<div class="widget">
+<h3>📺 Hotstar</h3>
+<p id="dashboardHotstar">
+0 Active
+</p>
+</div>
+
+<div class="widget">
+<h3>🧺 Chores</h3>
+<p id="dashboardChores">
+0 Pending
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- SOLAT PAGE -->
+
+<section
+id="solatPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+🕌 Solat Tracker
+</h2>
+
+<div id="solatContainer">
+
+<div class="prayer-row">
+<input type="checkbox" id="subuh">
+<label>Subuh</label>
+</div>
+
+<div class="prayer-row">
+<input type="checkbox" id="zohor">
+<label>Zohor</label>
+</div>
+
+<div class="prayer-row">
+<input type="checkbox" id="asar">
+<label>Asar</label>
+</div>
+
+<div class="prayer-row">
+<input type="checkbox" id="maghrib">
+<label>Maghrib</label>
+</div>
+
+<div class="prayer-row">
+<input type="checkbox" id="isyak">
+<label>Isyak</label>
+</div>
+
+</div>
+
+<div class="progress-wrapper">
+
+<div id="solatBar">
+
+</div>
+
+</div>
+
+<p id="solatProgress">
+0 / 5 Solat
+</p>
+
+</div>
+
+</section>
+
+<!-- PLANNER -->
+
+<section
+id="plannerPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+📝 Brain Dump
+</h2>
+
+<textarea
+id="brainDump"
+placeholder="Type anything...">
+</textarea>
+
+<button
+id="saveBrainDump">
+Save
+</button>
+
+</div>
+
+</section>
+
+<!-- EVENT PAGE -->
+
+<section
+id="eventPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+📅 Event Manager
+</h2>
+
+<input
+id="eventGuest"
+placeholder="Guest Name">
+
+<input
+id="eventPhone"
+placeholder="Phone Number">
+
+<input
+id="eventName"
+placeholder="Event Name">
+
+<input
+id="eventPax"
+placeholder="Pax">
+
+<input
+type="date"
+id="eventDate">
+
+<input
+type="number"
+id="eventBalance"
+placeholder="Balance">
+
+<select id="eventStatus">
+
+<option>
+Confirmed
+</option>
+
+<option>
+Waiting Payment
+</option>
+
+<option>
+Follow Up
+</option>
+
+</select>
+
+<button id="saveEvent">
+Save Event
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>
+Upcoming Events
+</h2>
+
+<div id="eventList">
+
+No Event Yet
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOLLOW UP -->
+
+<section
+id="followupPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+💼 Follow Up Guest
+</h2>
+
+<input
+id="fuGuest"
+placeholder="Guest Name">
+
+<input
+id="fuPhone"
+placeholder="Phone Number">
+
+<input
+id="fuEvent"
+placeholder="Event">
+
+<input
+id="fuBalance"
+placeholder="Balance">
+
+<input
+id="fuStatus"
+placeholder="Status">
+
+<button
+id="saveFollowUp">
+
+Save
+
+</button>
+
+</div>
+
+<div class="card">
+
+<div id="followList">
+
+No Guest
+
+</div>
+
+</div>
+
+</section>
+
+<!-- HOTSTAR HQ -->
+
+<section
+id="hotstarPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+📺 Disney+ Hotstar HQ
+</h2>
+
+</div>
+
+<!-- ACCOUNT 1 -->
+
+<div class="card">
+
+<h3>
+📱 iPhone 16
+</h3>
+
+<p>
+0102730140
+</p>
+
+<div id="account1Profiles">
+
+</div>
+
+<button
+id="addProfileA">
+
++ Add Profile
+
+</button>
+
+</div>
+
+<!-- ACCOUNT 2 -->
+
+<div class="card">
+
+<h3>
+📱 iPhone 11
+</h3>
+
+<p>
+0104442604
+</p>
+
+<div id="account2Profiles">
+
+</div>
+
+<button
+id="addProfileB">
+
++ Add Profile
+
+</button>
+
+</div>
+
+</section>
+
+<!-- MONEY PAGE -->
+
+<section
+id="moneyPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+💰 Cash Tracker
+</h2>
+
+<input
+type="number"
+id="moneyAmount"
+placeholder="Amount">
+
+<input
+id="moneyDesc"
+placeholder="Description">
+
+<select id="moneyType">
+
+<option value="in">
+Money In
+</option>
+
+<option value="out">
+Money Out
+</option>
+
+</select>
+
+<button id="saveMoney">
+
+Add Transaction
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>
+Transaction History
+</h2>
+
+<div id="moneyList">
+
+No Transaction
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>
+Current Balance
+</h2>
+
+<h1 id="balanceDisplay">
+RM0
+</h1>
+
+</div>
+
+</section>
+
+<!-- SALES PAGE -->
+
+<section
+id="salesPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+🏨 Sales Tracker
+</h2>
+
+<input
+type="date"
+id="salesStart">
+
+<input
+type="date"
+id="salesEnd">
+
+<input
+type="number"
+id="dn90"
+placeholder="DN 90%">
+
+<input
+type="number"
+id="dn10"
+placeholder="DN 10%">
+
+<input
+type="number"
+id="sr90"
+placeholder="SR 90%">
+
+<input
+type="number"
+id="sr10"
+placeholder="SR 10%">
+
+<input
+type="number"
+id="cashbox"
+placeholder="Cashbox">
+
+<button id="saveSales">
+Save Sales
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>
+Sales History
+</h2>
+
+<div id="salesHistory">
+
+No Data
+
+</div>
+
+</div>
+
+</section>
+
+<!-- NEED TO ASK -->
+
+<section
+id="askPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+💭 Need To Ask
+</h2>
+
+<div id="askContainer">
+
+</div>
+
+<button id="addPerson">
+
++ Add Person
+
+</button>
+
+</div>
+
+</section>
+
+<!-- CHORES -->
+
+<section
+id="choresPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+🧺 Chores
+</h2>
+
+<div id="choresList">
+
+</div>
+
+<button id="addChore">
+
++ Add Chore
+
+</button>
+
+</div>
+
+</section>
+
+<!-- TO BUY -->
+
+<section
+id="buyPage"
+class="page hidden">
+
+<div class="card">
+
+<h2>
+🛍 To Buy
+</h2>
+
+<div id="buyList">
+
+</div>
+
+<button id="addBuyItem">
+
++ Add Item
+
+</button>
+
+</div>
+
+</section>
+
+<!-- NAVIGATION -->
+
+<nav class="bottom-nav">
+
+<button data-page="dashboardPage">
+🏠
+</button>
+
+<button data-page="plannerPage">
+📝
+</button>
+
+<button data-page="eventPage">
+📅
+</button>
+
+<button data-page="hotstarPage">
+📺
+</button>
+
+<button data-page="moneyPage">
+💰
+</button>
+
+<button data-page="salesPage">
+🏨
+</button>
+
+</nav>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
