@@ -323,170 +323,80 @@ No Guest
 
 </section>
 
-<!-- HOTSTAR MANAGER -->
+<!-- HOTSTAR HQ -->
+
+<section
+id="hotstarPage"
+class="page hidden">
 
 <div class="card">
 
-<h2 class="section-title">
-📺 Disney Hotstar Rental
+<h2>
+📺 Disney+ Hotstar HQ
 </h2>
 
-<select id="hotstarAccount">
+</div>
 
-<option value="iphone16">
-iPhone 16 • 0102730140
-</option>
+<!-- ACCOUNT 1 -->
 
-<option value="iphone11">
-iPhone 11 • 0104442604
-</option>
+<div class="card">
 
-</select>
+<h3>
+📱 iPhone 16
+</h3>
 
-<input
-id="profileName"
-placeholder="Profile Name">
+<p>
+0102730140
+</p>
 
-<input
-id="customerName"
-placeholder="Customer Name">
+<div id="account1Profiles">
 
-<input
-id="platform"
-placeholder="Platform (Threads / WhatsApp)">
-
-<input
-id="username"
-placeholder="Threads Username">
-
-<input
-id="customerPhone"
-placeholder="Phone Number">
-
-<input
-id="device"
-placeholder="Device (TV / Phone)">
-
-<input
-type="date"
-id="latestPayment">
-
-<input
-type="date"
-id="nextPayment">
+</div>
 
 <button
-class="btn"
-onclick="addHotstarProfile()">
+id="addProfileA">
 
-Save Profile
++ Add Profile
 
 </button>
 
 </div>
 
-<div class="card">
-
-<h2 class="section-title">
-📺 Active Profiles
-</h2>
-
-<div id="hotstarList">
-
-No Profiles Yet
-
-</div>
-let hotstarProfiles =
-JSON.parse(
-localStorage.getItem(
-'hotstarProfiles'
-)
-)||[];
-
-function addHotstarProfile(){
-
-hotstarProfiles.push({
-
-account:
-hotstarAccount.value,
-
-profile:
-profileName.value,
-
-name:
-customerName.value,
-
-platform:
-platform.value,
-
-username:
-username.value,
-
-phone:
-customerPhone.value,
-
-device:
-device.value,
-
-latest:
-latestPayment.value,
-
-next:
-nextPayment.value
-
-});
-
-localStorage.setItem(
-'hotstarProfiles',
-JSON.stringify(
-hotstarProfiles
-)
-);
-
-renderHotstar();
-
-}
-
-function renderHotstar(){
-
-let html='';
-
-hotstarProfiles.forEach((p,index)=>{
-
-html+=`
+<!-- ACCOUNT 2 -->
 
 <div class="card">
 
-<b>${p.profile}</b><br>
+<h3>
+📱 iPhone 11
+</h3>
 
-👤 ${p.name}<br>
+<p>
+0104442604
+</p>
 
-📱 ${p.phone}<br>
-
-💬 ${p.platform}<br>
-
-🏷 ${p.username}<br>
-
-📺 ${p.device}<br>
-
-💰 ${p.latest}<br>
-
-⏳ ${p.next}<br>
-
-📍 ${p.account}
+<div id="account2Profiles">
 
 </div>
 
-`;
+<button
+id="addProfileB">
 
-});
++ Add Profile
 
-document.getElementById(
-'hotstarList'
-).innerHTML=
-html || 'No Profiles';
+</button>
 
-}
+</div>
+
+</section>
+
+<!-- MONEY PAGE -->
+
+<section
+id="moneyPage"
+class="page hidden">
+
+<div class="card">
+
 <h2>
 💰 Cash Tracker
 </h2>
@@ -546,143 +456,6 @@ RM0
 
 </div>
 
-</div>
-
-<div class="card">
-
-<h2 class="section-title">
-💰 Closing Tracker
-</h2>
-
-<input
-type="date"
-id="closingStart">
-
-<input
-type="date"
-id="closingEnd">
-
-<input
-type="number"
-id="closingAmount"
-placeholder="Amount">
-
-<button
-class="btn"
-onclick="saveClosing()">
-
-Save Closing
-
-</button>
-
-</div>
-
-<div class="card">
-
-<h2 class="section-title">
-🧾 Closing History
-</h2>
-
-<div id="closingList">
-
-No Closing Yet
-
-</div>
-
-</div>
-let closings =
-JSON.parse(
-localStorage.getItem(
-'closings'
-)
-)||[];
-
-function saveClosing(){
-
-closings.push({
-
-start:
-closingStart.value,
-
-end:
-closingEnd.value,
-
-amount:
-closingAmount.value,
-
-closed:false
-
-});
-
-localStorage.setItem(
-'closings',
-JSON.stringify(
-closings
-)
-);
-
-renderClosing();
-
-}
-
-function toggleClosed(index){
-
-closings[index].closed =
-!closings[index].closed;
-
-localStorage.setItem(
-'closings',
-JSON.stringify(
-closings
-)
-);
-
-renderClosing();
-
-}
-
-function renderClosing(){
-
-let html='';
-
-closings.forEach((c,index)=>{
-
-html+=`
-
-<div class="card">
-
-💰 RM${c.amount}<br>
-
-📅 ${c.start}
- → ${c.end}<br>
-
-Status:
-${c.closed ? '✅ Closed' : '🟡 Pending'}
-
-<br><br>
-
-<button
-class="btn"
-onclick="toggleClosed(${index})">
-
-${c.closed
-?'Reopen'
-:'Mark Closed'}
-
-</button>
-
-</div>
-
-`;
-
-});
-
-document.getElementById(
-'closingList'
-).innerHTML=
-html || 'No Closing';
-
-}
 </section>
 
 <!-- SALES PAGE -->
@@ -760,25 +533,19 @@ class="page hidden">
 
 <div class="card">
 
-<h2 class="section-title">
+<h2>
 💭 Need To Ask
 </h2>
 
-<input
-id="staffName"
-placeholder="Staff Name">
-
-<button
-class="btn"
-onclick="addStaff()">
-
-Add Staff
-
-</button>
-
-<div id="staffList">
+<div id="askContainer">
 
 </div>
+
+<button id="addPerson">
+
++ Add Person
+
+</button>
 
 </div>
 
