@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🎀 Aya's Planner</title>
+
+<style>
+
+:root{
+--bg:#FFF8F5;
+--card:#FFFFFF;
+--pink:#FFDDE6;
+--pink2:#FFECEF;
+--cream:#FFF4E8;
+--text:#6B5B5B;
+--shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+}
+
+body{
+background:linear-gradient(
+180deg,
+#FFF8F5,
+#FFF1F4
+);
+color:var(--text);
+padding-bottom:100px;
+}
+
+.hidden{
+display:none;
+}
+
+.card{
+background:var(--card);
+margin:15px;
+padding:18px;
+border-radius:24px;
+box-shadow:var(--shadow);
+}
+
+.hero{
+background:linear-gradient(
+135deg,
+#FFDDE6,
+#FFF4E8
+);
+}
+
+h1,h2,h3{
+margin-bottom:10px;
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:12px;
+border-radius:16px;
+border:1px solid #eee;
+margin-top:10px;
+background:white;
+}
+
+textarea{
+min-height:120px;
+resize:vertical;
+}
+
+button{
+border:none;
+padding:12px;
+border-radius:16px;
+cursor:pointer;
+}
+
+.btn{
+width:100%;
+margin-top:12px;
+background:#FFDDE6;
+font-weight:700;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+padding:0 15px;
+}
+
+.widget{
+background:white;
+border-radius:20px;
+padding:15px;
+box-shadow:var(--shadow);
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:white;
+display:flex;
+justify-content:space-around;
+padding:14px;
+box-shadow:0 -5px 20px rgba(0,0,0,.08);
+}
+
+.bottom-nav button{
+background:none;
+font-size:13px;
+}
+
+.progress{
+width:100%;
+height:14px;
+background:#eee;
+border-radius:50px;
+overflow:hidden;
+margin-top:10px;
+}
+
+.progress-bar{
+height:100%;
+width:0%;
+background:#FFB6C9;
+}
+
+.prayer{
+display:flex;
+justify-content:space-between;
+padding:8px 0;
+}
+
+.todo-box{
+margin-top:10px;
+padding:12px;
+background:#FFF8FB;
+border-radius:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="loginPage">
+
+<div class="card hero">
+
+<h1>🎀 Aya's Planner</h1>
+
+<p>
+Pink • Beige • Cream Edition
+</p>
+
+<input
+type="password"
+id="passwordInput"
+placeholder="Password">
+
+<button
+class="btn"
+onclick="login()">
+
+Unlock 🎀
+
+</button>
+
+</div>
+
+</div>
+
+<div
+id="app"
+class="hidden">
+
+<!-- DASHBOARD -->
+
+<section id="dashboardPage">
+
+<div class="card hero">
+
+<h2>
+إِنَّ هَـٰذَا لَرِزْقُنَا مَا لَهُ مِن نَّفَادٍ
+</h2>
+
+<p id="todayDate"></p>
+
+<p id="clock"></p>
+
+</div>
+
+<div class="card">
+
+<h3>🕌 Waktu Solat Melaka</h3>
+
+<p id="prayerTimes">
+Loading...
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>✅ Solat Hari Ini</h3>
+
+<div class="prayer">
+<label>
+<input type="checkbox" id="subuh">
+Subuh
+</label>
+</div>
+
+<div class="prayer">
+<label>
+<input type="checkbox" id="zohor">
+Zohor
+</label>
+</div>
+
+<div class="prayer">
+<label>
+<input type="checkbox" id="asar">
+Asar
+</label>
+</div>
+
+<div class="prayer">
+<label>
+<input type="checkbox" id="maghrib">
+Maghrib
+</label>
+</div>
+
+<div class="prayer">
+<label>
+<input type="checkbox" id="isyak">
+Isyak
+</label>
+</div>
+
+<div class="progress">
+
+<div
+class="progress-bar"
+id="solatBar">
+
+</div>
+
+</div>
+
+<p id="solatProgress">
+0 / 5
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>📅 Event Terdekat</h3>
+
+<div id="nextEvent">
+
+Tiada Event
+
+</div>
+
+</div>
+
+<div class="grid">
+
+<div class="widget">
+<h3>💰 Cash</h3>
+<p id="cashWidget">RM0</p>
+</div>
+
+<div class="widget">
+<h3>🏨 Sales</h3>
+<p id="salesWidget">RM0</p>
+</div>
+
+<div class="widget">
+<h3>📺 Hotstar</h3>
+<p id="hotstarWidget">
+0 / 12
+</p>
+</div>
+
+<div class="widget">
+<h3>🧺 To Buy</h3>
+<p id="buyWidget">
+0 Item
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- EVENT -->
+
+<section
+id="eventPage"
+class="hidden">
+
+<div class="card">
+
+<h2>📅 Event Manager</h2>
+
+<input
+id="eventPic"
+placeholder="PIC">
+
+<input
+id="eventName"
+placeholder="Nama Event">
+
+<input
+id="eventType"
+placeholder="Jenis Event">
+
+<input
+id="eventPax"
+placeholder="Pax">
+
+<input
+id="eventBalance"
+placeholder="Balance">
+
+<select id="eventStatus">
+
+<option>Confirmed</option>
+<option>Waiting Payment</option>
+<option>Follow Up</option>
+
+</select>
+
+<input
+type="date"
+id="eventDate">
+
+<button
+class="btn"
+onclick="saveEvent()">
+
+Save Event
+
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Upcoming Event</h2>
+
+<div id="eventList">
+
+No Event
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TODO -->
+
+<section
+id="todoPage"
+class="hidden">
+
+<div class="card">
+
+<h2>✅ Daily Tasks</h2>
+
+<textarea
+id="dailyTodo"></textarea>
+
+</div>
+
+<div class="card">
+
+<h2>📆 Weekly Tasks</h2>
+
+<textarea
+id="weeklyTodo"></textarea>
+
+</div>
+
+<div class="card">
+
+<h2>🗓 Monthly Tasks</h2>
+
+<textarea
+id="monthlyTodo"></textarea>
+
+</div>
+
+<button
+class="btn"
+onclick="saveTodos()">
+
+Save Todos
+
+</button>
+
+</section>
+
+<!-- BRAIN DUMP -->
+
+<section
+id="brainPage"
+class="hidden">
+
+<div class="card">
+
+<h2>📝 Brain Dump</h2>
+
+<textarea
+id="brainDump"></textarea>
+
+<button
+class="btn"
+onclick="saveBrainDump()">
+
+Save
+
+</button>
+
+</div>
+
+</section>
